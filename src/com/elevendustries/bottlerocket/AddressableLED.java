@@ -2,10 +2,9 @@ package com.elevendustries.bottlerocket;
 
 public abstract class AddressableLED {
 
-	private final AddressableChannel channel;
-
-	public AddressableLED(AddressableChannel channel) {
-		this.channel = channel;
-	}
+	/**
+	 * @return null if clean, modified bytes if dirty
+	 */
+	public abstract byte[] getData();
 
 }
