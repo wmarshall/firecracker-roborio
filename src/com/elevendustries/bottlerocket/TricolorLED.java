@@ -6,6 +6,7 @@ public class TricolorLED extends AddressableLED {
 	private int rVal = 0;
 	private int gVal = 0;
 	private int bVal = 0;
+	private boolean dirty;
 
 	public TricolorLED(ColorType type) {
 		this.type = type;
@@ -13,19 +14,21 @@ public class TricolorLED extends AddressableLED {
 
 	@Override
 	public byte[] getData() {
-		switch (type) {
-		case RGB:
-			return new byte[]{getR(),getG(),getB()};
-		case RBG:
-			return new byte[]{getR(),getB(),getG()};
-		case BGR:
-			return new byte[]{getB(),getG(),getR()};
-		case BRG:
-			return new byte[]{getB(),getR(),getG()};
-		case GRB:
-			return new byte[]{getG(),getR(),getB()};
-		case GBR:
-			return new byte[]{getG(),getB(),getR()};
+		if (dirty) {
+			switch (type) {
+			case RGB:
+				return new byte[] { getR(), getG(), getB() };
+			case RBG:
+				return new byte[] { getR(), getB(), getG() };
+			case BGR:
+				return new byte[] { getB(), getG(), getR() };
+			case BRG:
+				return new byte[] { getB(), getR(), getG() };
+			case GRB:
+				return new byte[] { getG(), getR(), getB() };
+			case GBR:
+				return new byte[] { getG(), getB(), getR() };
+			}
 		}
 		return null;
 	}
@@ -38,9 +41,11 @@ public class TricolorLED extends AddressableLED {
 	}
 
 	/**
-	 * @param rVal the rVal to set
+	 * @param rVal
+	 *            the rVal to set
 	 */
 	public void setR(int rVal) {
+		dirty = true;
 		this.rVal = rVal;
 	}
 
@@ -52,9 +57,11 @@ public class TricolorLED extends AddressableLED {
 	}
 
 	/**
-	 * @param gVal the gVal to set
+	 * @param gVal
+	 *            the gVal to set
 	 */
 	public void setG(int gVal) {
+		dirty = true;
 		this.gVal = gVal;
 	}
 
@@ -66,9 +73,11 @@ public class TricolorLED extends AddressableLED {
 	}
 
 	/**
-	 * @param bVal the bVal to set
+	 * @param bVal
+	 *            the bVal to set
 	 */
 	public void setB(int bVal) {
+		dirty = true;
 		this.bVal = bVal;
 	}
 

@@ -28,6 +28,9 @@ public class AddressableChannel extends FVMChannel {
 	
 	@Override
 	public FVMCommand update() {
+		for (int i = 0; i < leds.length; i++) {
+			
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
